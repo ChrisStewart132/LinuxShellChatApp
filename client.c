@@ -64,9 +64,9 @@ int client_socket(char *hostname)
 }
 
 
-// thread function to handle reading received messages to output
-void* handle_write(void* args){//arg = fd to read from
-    int sockfd = *((int*)args);//cast as int ptr, than de-reference to int
+// thread function to handle user messages to be sent to the server
+void* handle_write(void* args){
+    int sockfd = *((int*)args);// cast as int ptr, than de-reference to int
     char *line;
     while(1) {
       line = readline(">> ");
@@ -79,8 +79,8 @@ void* handle_write(void* args){//arg = fd to read from
 }
 
 // thread function to handle reading received messages to output
-void* handle_read(void* args){//arg = fd to read from    
-    int sockfd = *((int*)args);//cast as int ptr, than de-reference to int
+void* handle_read(void* args){
+    int sockfd = *((int*)args);// cast as int ptr, than de-reference to int
     int numbytes = 0;
     char buffer[MAXDATASIZE];
     do {
